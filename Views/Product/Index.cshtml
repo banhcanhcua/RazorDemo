@@ -1,0 +1,107 @@
+@model IEnumerable<RazorDemo.Models.Product>
+
+@{
+    ViewData["Title"] = "Danh sách sản phẩm";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+@{
+    var searchKeyword = ViewData["SearchKeyword"] as string ?? string.Empty;
+    var selectedCategoryId = ViewData["CategoryId"] as int?;
+}
+
+<div class="mb-4">
+    <form method="get" class="row gx-2 gy-2 align-items-center">
+        <div class="col-auto">
+            <input name="searchKeyword" value="@searchKeyword" class="form-control" placeholder="Tìm theo tên hoặc mã" />
+        </div>
+        <div class="col-auto">
+            <select name="categoryId" class="form-select">
+                <option value="">Tất cả danh mục</option>
+                @if (ViewData["Categories"] is IEnumerable<RazorDemo.Models.Category> categories)
+                {
+                    foreach (var category in categories)
+                    {
+                        <option value="@category.Id" selected="@(selectedCategoryId == category.Id ? "selected" : null)">@category.Name</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+        </div>
+        <div class="col-auto">
+            <a asp-action="Index" class="btn btn-secondary">Xóa tìm kiếm</a>
+        </div>
+    </form>
+    <form asp-action="RemoveAll" method="post" class="mt-2">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-danger">Xóa tất cả</button>
+    </form>
+</div>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Thêm sản phẩm mới</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tên</th>
+            <th>Giá</th>
+            <th>Danh mục</th>
+            <th>Tồn kho</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">@item.Name</a>
+                </td>
+                <td>@item.Price</td>
+                <td>@item.Category?.Name</td>
+                <td>@item.Stock</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Sửa</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Chi tiết</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Xóa</a>
+                    <form asp-controller="Cart" asp-action="Add" method="post" style="display:inline">
+                        <input type="hidden" name="productId" value="@item.Id" />
+                        <input type="hidden" name="quantity" value="1" />
+                        <button type="submit" class="btn btn-success btn-sm">Thêm vào giỏ</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@{
+    var currentPage = (int)(ViewData["CurrentPage"] ?? 1);
+    var totalPages = (int)(ViewData["TotalPages"] ?? 1);
+}
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+            <a class="page-link" href="?page=@(currentPage - 1)&searchKeyword=@searchKeyword&categoryId=@selectedCategoryId">Previous</a>
+        </li>
+        @for (int i = 1; i <= totalPages; i++)
+        {
+            <li class="page-item @(i == currentPage ? "active" : "")">
+                <a class="page-link" href="?page=@i&searchKeyword=@searchKeyword&categoryId=@selectedCategoryId">@i</a>
+            </li>
+        }
+        <li class="page-item @(currentPage == totalPages ? "disabled" : "")">
+            <a class="page-link" href="?page=@(currentPage + 1)&searchKeyword=@searchKeyword&categoryId=@selectedCategoryId">Next</a>
+        </li>
+    </ul>
+</nav>

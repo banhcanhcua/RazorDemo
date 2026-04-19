@@ -1,0 +1,7 @@
+@{
+    var message = ViewData["Message"] as string ?? "Không có nội dung thông báo.";
+}
+
+<div class="alert alert-info">
+    <strong>Thông báo:</strong> @message
+</div>

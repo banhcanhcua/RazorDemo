@@ -1,0 +1,293 @@
+{
+  "Files": [
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/obj/Debug/net8.0/scopedcss/projectbundle/RazorDemo.bundle.scp.css",
+      "PackagePath": "staticwebassets/RazorDemo.bundle.scp.css"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/css/site.css",
+      "PackagePath": "staticwebassets/css/site.css"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/favicon.ico",
+      "PackagePath": "staticwebassets/favicon.ico"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/images/0knrsmg1.22p.jpg",
+      "PackagePath": "staticwebassets/images/0knrsmg1.22p.jpg"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/images/products/341ca4f9-e46f-453a-9c34-aff11092f025.jpg",
+      "PackagePath": "staticwebassets/images/products/341ca4f9-e46f-453a-9c34-aff11092f025.jpg"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/images/products/367ab0d6-8688-4d74-a89e-b90aaf651dee.jpg",
+      "PackagePath": "staticwebassets/images/products/367ab0d6-8688-4d74-a89e-b90aaf651dee.jpg"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/images/products/6e3b4aac-2bb7-4c03-ba7c-2e3dba55292d.jpg",
+      "PackagePath": "staticwebassets/images/products/6e3b4aac-2bb7-4c03-ba7c-2e3dba55292d.jpg"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/images/products/77eb775c-6c27-4270-9816-a2b7439b9222.jpg",
+      "PackagePath": "staticwebassets/images/products/77eb775c-6c27-4270-9816-a2b7439b9222.jpg"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/images/products/ace31802-537d-40d5-b0b8-b3507b9ba9ac.jpg",
+      "PackagePath": "staticwebassets/images/products/ace31802-537d-40d5-b0b8-b3507b9ba9ac.jpg"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/images/products/d1586ed7-87b2-4c06-8d3e-49accd580788.jpg",
+      "PackagePath": "staticwebassets/images/products/d1586ed7-87b2-4c06-8d3e-49accd580788.jpg"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/js/site.js",
+      "PackagePath": "staticwebassets/js/site.js"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/LICENSE",
+      "PackagePath": "staticwebassets/lib/bootstrap"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.css"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.css.map"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.min.css"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.css"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.css"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.css"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.css.map"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.min.css"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.min.css.map"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.css"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.js"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.js"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.js.map"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.min.js"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/js/bootstrap.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.js"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.js.map"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.min.js"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.min.js.map"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/LICENSE.txt"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/jquery-validation/LICENSE.md",
+      "PackagePath": "staticwebassets/lib/jquery-validation/LICENSE.md"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/jquery-validation/dist/additional-methods.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/additional-methods.js"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/jquery-validation/dist/additional-methods.min.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/additional-methods.min.js"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/jquery-validation/dist/jquery.validate.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/jquery.validate.js"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/jquery-validation/dist/jquery.validate.min.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/jquery.validate.min.js"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/jquery/LICENSE.txt",
+      "PackagePath": "staticwebassets/lib/jquery/LICENSE.txt"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/jquery/dist/jquery.js",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.js"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/jquery/dist/jquery.min.js",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.js"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/lib/jquery/dist/jquery.min.map",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.RazorDemo.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.RazorDemo.props",
+      "PackagePath": "build\\RazorDemo.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.RazorDemo.props",
+      "PackagePath": "buildMultiTargeting\\RazorDemo.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.RazorDemo.props",
+      "PackagePath": "buildTransitive\\RazorDemo.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

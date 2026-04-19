@@ -1,0 +1,62 @@
+@page "/ContactPage"
+@model RazorDemo.Pages.ContactPageModel
+
+@{
+    ViewData["Title"] = "LIÊN HỆ";
+}
+
+<h1 class="display-4">Trang liên hệ</h1>
+<p class="lead">Điền các thông tin liên hệ</p>
+<hr />
+
+<form class="bg-light p-2 m-2" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <!-- Ẩn trường ContactId trên form, chỉ hiển thị khi đã gửi thông tin liên hệ -->
+    <div class="mb-3">
+        <label class="form-label" asp-for="contact.FirstName"></label>
+        <input class="form-control" asp-for="contact.FirstName" />
+        <span class="text-danger" asp-validation-for="contact.FirstName"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="contact.LastName"></label>
+        <input class="form-control" asp-for="contact.LastName" />
+        <span class="text-danger" asp-validation-for="contact.LastName"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="contact.DateOfBirth"></label>
+        @if (Model.contact.DateOfBirth == DateTime.MinValue)
+        {
+            <input class="form-control" name="contact.DateOfBirth" type="date" value="" />
+        }
+        else
+        {
+            <input class="form-control" name="contact.DateOfBirth" type="date" value="@Model.contact.DateOfBirth.ToString("yyyy-MM-dd")" />
+        }
+        <span class="text-danger" asp-validation-for="contact.DateOfBirth"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="contact.Email"></label>
+        <input class="form-control" asp-for="contact.Email" />
+        <span class="text-danger" asp-validation-for="contact.Email"></span>
+    </div>
+    <button class="btn btn-danger" type="submit">Gửi</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Model.thongbao))
+{
+    <div class="alert alert-danger m-2">
+        <p>@Model.thongbao</p>
+    </div>
+}
+
+<div class="alert alert-secondary m-2">
+    <p>Thông tin Contact</p>
+    <ul>
+        <li>ContactId: @Model.contact.ContactId</li>
+        <li>FirstName: @Model.contact.FirstName</li>
+        <li>LastName: @Model.contact.LastName</li>
+        <li>DateOfBirth: @(Model.contact.DateOfBirth == DateTime.MinValue ? "" : Model.contact.DateOfBirth.ToString("dd/MM/yyyy"))</li>
+        <li>Email: @Model.contact.Email</li>
+    </ul>
+</div>
