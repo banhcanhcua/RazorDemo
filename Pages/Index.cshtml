@@ -2,23 +2,80 @@
 @model IndexModel
 @using RazorDemo.Models
 @{
-    ViewData["Title"] = "Home page";
-}
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
-
-@{
-    int page = 1;
+    ViewData["Title"] = "Trang chủ";
     var req = ViewContext.HttpContext.Request;
+    int currentPage = 1;
     if (req.Query.ContainsKey("page"))
     {
-        int.TryParse(req.Query["page"], out page);
-        if (page < 1) page = 1;
+        int.TryParse(req.Query["page"], out currentPage);
+        if (currentPage < 1) currentPage = 1;
     }
 }
-<div class="mt-4">
-    @await Component.InvokeAsync("ProductBox", new { sapxepTang = true, page = page, pageSize = 15 })
+
+<section class="hero-section mb-4">
+    <div>
+        <span class="eyebrow">Top sản phẩm hot</span>
+        <h1 class="hero-title">Khám phá sản phẩm mới, hàng bán chạy và ưu đãi nổi bật mỗi ngày.</h1>
+        <p class="hero-copy">Từ sản phẩm hot trend đến món mới lên kệ, mọi lựa chọn đều được sắp xếp trực quan để bạn mua sắm nhanh và dễ hơn.</p>
+    </div>
+    <div class="stat-grid">
+        <div class="stat-card">
+            <strong>Hot</strong>
+            <span class="muted-text">Top sản phẩm được quan tâm nhiều và đáng mua ngay hôm nay.</span>
+        </div>
+        <div class="stat-card">
+            <strong>Mới</strong>
+            <span class="muted-text">Những sản phẩm mới cập nhật để bạn không bỏ lỡ xu hướng.</span>
+        </div>
+        <div class="stat-card">
+            <strong>Deal tốt</strong>
+            <span class="muted-text">Gợi ý lựa chọn nổi bật với mức giá dễ tiếp cận hơn.</span>
+        </div>
+    </div>
+</section>
+
+<div class="filter-panel mb-4">
+    <div class="page-header mb-0">
+        <div>
+            <span class="eyebrow">Khám phá nhanh</span>
+            <h2 class="section-title">Chọn cách xem sản phẩm phù hợp</h2>
+            <p class="section-subtitle mb-0">Sắp xếp danh sách để xem nhanh hàng hot, sản phẩm mới và những lựa chọn phù hợp ngân sách.</p>
+        </div>
+    </div>
+
+    <form method="get" class="row gx-3 gy-3 align-items-center">
+            <div class="col-md-4 col-lg-3">
+                <select name="SortOrder" class="form-select" id="sortOrder">
+                    @if (req.Query["SortOrder"] == "desc")
+                    {
+                        <option value="asc">Giá thấp đến cao</option>
+                        <option value="desc" selected>Giá cao đến thấp</option>
+                    }
+                    else
+                    {
+                        <option value="asc" selected>Giá thấp đến cao</option>
+                        <option value="desc">Giá cao đến thấp</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-4 col-lg-4">
+                <input type="text" name="keyword" class="form-control" id="searchKeyword" placeholder="Tìm kiếm sản phẩm..." value="@req.Query["keyword"]" />
+            </div>
+        <div class="col-auto">
+            <span class="pill-badge">Trang @(currentPage)</span>
+        </div>
+    </form>
+</div>
+<div class="content-panel">
+    @{
+        bool tangSortInvoke = true;
+        if (req.Query["SortOrder"] == "desc")
+        {
+            tangSortInvoke = false;
+        }
+    }
+    @{
+        string? keyword = req.Query["keyword"];
+    }
+    @await Component.InvokeAsync("ProductBox", new { sapxepTang = tangSortInvoke, page = currentPage, pageSize = 15, keyword = keyword })
 </div>

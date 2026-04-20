@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zOW7vP4bha2dyZrVjmNHYoleuO1S78bOWV8K5APqfKY=",
+  "Hash": "+4yHs8iJ9lhPHUZz2/sGsiSQYk8F4U+wyto0ZO8GL2I=",
   "Source": "RazorDemo",
   "BasePath": "_content/RazorDemo",
   "Mode": "Default",
@@ -150,6 +150,25 @@
       "OriginalItemSpec": "wwwroot/images/products/367ab0d6-8688-4d74-a89e-b90aaf651dee.jpg"
     },
     {
+      "Identity": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/images/products/413383ff-c0c0-43bc-84e0-008928a4a766.jpg",
+      "SourceId": "RazorDemo",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/",
+      "BasePath": "_content/RazorDemo",
+      "RelativePath": "images/products/413383ff-c0c0-43bc-84e0-008928a4a766.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/products/413383ff-c0c0-43bc-84e0-008928a4a766.jpg"
+    },
+    {
       "Identity": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/images/products/6e3b4aac-2bb7-4c03-ba7c-2e3dba55292d.jpg",
       "SourceId": "RazorDemo",
       "SourceType": "Discovered",
@@ -188,6 +207,25 @@
       "OriginalItemSpec": "wwwroot/images/products/77eb775c-6c27-4270-9816-a2b7439b9222.jpg"
     },
     {
+      "Identity": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/images/products/949409aa-ec02-4ccb-8678-b05e5e8ed9c6.jpg",
+      "SourceId": "RazorDemo",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/",
+      "BasePath": "_content/RazorDemo",
+      "RelativePath": "images/products/949409aa-ec02-4ccb-8678-b05e5e8ed9c6.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/products/949409aa-ec02-4ccb-8678-b05e5e8ed9c6.jpg"
+    },
+    {
       "Identity": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/images/products/ace31802-537d-40d5-b0b8-b3507b9ba9ac.jpg",
       "SourceId": "RazorDemo",
       "SourceType": "Discovered",
@@ -224,6 +262,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/images/products/d1586ed7-87b2-4c06-8d3e-49accd580788.jpg"
+    },
+    {
+      "Identity": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/js/cart-popup.js",
+      "SourceId": "RazorDemo",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/",
+      "BasePath": "_content/RazorDemo",
+      "RelativePath": "js/cart-popup.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/cart-popup.js"
     },
     {
       "Identity": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/js/site.js",

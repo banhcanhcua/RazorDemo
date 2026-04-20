@@ -12,16 +12,15 @@ public class ProductBox : ViewComponent
         _productService = productService;
     }
 
-    public IViewComponentResult Invoke(bool sapxepTang = true, int page = 1, int pageSize = 15)
+    public async Task<IViewComponentResult> InvokeAsync(bool sapxepTang = true, int page = 1, int pageSize = 15, string? keyword = null)
     {
-        var products = _productService.GetProducts(page, pageSize);
-        var sortedProducts = sapxepTang
-            ? products.OrderBy(p => p.Price).ToList()
-            : products.OrderByDescending(p => p.Price).ToList();
-
+        string sortOrder = sapxepTang ? "asc" : "desc";
+        var products = await _productService.SearchProductsAsync(keyword, null, sortOrder);
+        var paged = products.Skip((page - 1) * pageSize).Take(pageSize).ToList();
         ViewData["SortOrder"] = sapxepTang ? "Tăng dần" : "Giảm dần";
         ViewData["CurrentPage"] = page;
         ViewData["PageSize"] = pageSize;
-        return View(sortedProducts);
+        ViewData["Keyword"] = keyword;
+        return View(paged);
     }
 }

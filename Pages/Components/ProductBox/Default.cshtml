@@ -1,15 +1,22 @@
 @model List<RazorDemo.Models.Product>
 
-<div class="product-box">
-    @if (TempData["SuccessMessage"] != null)
+<div class="product-box product-grid-section">
+    @if (TempData["SuccessMessage"] != null && !Context.Request.Headers["X-Requested-With"].Equals("XMLHttpRequest"))
     {
         <div class="alert alert-success">@TempData["SuccessMessage"]</div>
     }
-    <h2>Danh sách sản phẩm (@ViewData["SortOrder"])</h2>
-    <div class="row">
+    <div class="product-box-header">
+        <div>
+            <span class="eyebrow">Top sản phẩm nổi bật</span>
+            <h2 class="section-title">Sản phẩm hot và mới cập nhật</h2>
+            <p class="section-subtitle mb-0">Danh sách gợi ý để bạn xem nhanh những mặt hàng nổi bật, mới lên kệ và đáng chú ý.</p>
+        </div>
+        <span class="pill-badge">Trang @ViewData["CurrentPage"]</span>
+    </div>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
         @foreach (var product in Model)
         {
-            <div class="col-md-4">
+            <div class="col mb-4">
                 @await Html.PartialAsync("_ProductItem", product)
             </div>
         }

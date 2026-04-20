@@ -4,39 +4,51 @@
     ViewData["Title"] = "Danh sách người dùng";
 }
 
-<h1>@ViewData["Title"]</h1>
-
 @if (TempData["SuccessMessage"] != null)
 {
     <div class="alert alert-success">@TempData["SuccessMessage"]</div>
 }
 
-<p>
-    <a asp-action="Create" class="btn btn-success">Thêm người dùng mới</a>
-</p>
+<div class="page-header">
+    <div>
+        <span class="eyebrow">Quản trị người dùng</span>
+        <h1>@ViewData["Title"]</h1>
+        <p class="mb-0">Theo dõi tài khoản, phân quyền và truy cập nhanh các thao tác quản trị.</p>
+    </div>
+    <div class="page-actions">
+        <span class="pill-badge">@Model.Count() tài khoản</span>
+        <a asp-action="Create" class="btn btn-primary">Thêm người dùng mới</a>
+    </div>
+</div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Tên đăng nhập</th>
-            <th>Email</th>
-            <th>Vai trò</th>
-            <th>Hành động</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.Username</td>
-                <td>@item.Email</td>
-                <td>@item.Role</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Sửa</a>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Chi tiết</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Xóa</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="list-panel">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Tên đăng nhập</th>
+                    <th>Email</th>
+                    <th>Vai trò</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="fw-semibold">@item.Username</td>
+                        <td>@item.Email</td>
+                        <td><span class="pill-badge">@item.Role</span></td>
+                        <td>
+                            <div class="inline-actions">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Sửa</a>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Chi tiết</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Xóa</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -5,58 +5,87 @@
     ViewData["Title"] = "LIÊN HỆ";
 }
 
-<h1 class="display-4">Trang liên hệ</h1>
-<p class="lead">Điền các thông tin liên hệ</p>
-<hr />
-
-<form class="bg-light p-2 m-2" method="post">
-    <div asp-validation-summary="All" class="text-danger"></div>
-
-    <!-- Ẩn trường ContactId trên form, chỉ hiển thị khi đã gửi thông tin liên hệ -->
-    <div class="mb-3">
-        <label class="form-label" asp-for="contact.FirstName"></label>
-        <input class="form-control" asp-for="contact.FirstName" />
-        <span class="text-danger" asp-validation-for="contact.FirstName"></span>
+<div class="page-header">
+    <div>
+        <span class="eyebrow">Kết nối với chúng tôi</span>
+        <h1>Trang liên hệ</h1>
+        <p class="mb-0">Điền thông tin để gửi yêu cầu và theo dõi lại dữ liệu vừa nhập một cách trực quan.</p>
     </div>
-    <div class="mb-3">
-        <label class="form-label" asp-for="contact.LastName"></label>
-        <input class="form-control" asp-for="contact.LastName" />
-        <span class="text-danger" asp-validation-for="contact.LastName"></span>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-7">
+        <div class="form-panel h-100">
+            <form method="post">
+                <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label" asp-for="contact.FirstName"></label>
+                        <input class="form-control" asp-for="contact.FirstName" />
+                        <span class="text-danger" asp-validation-for="contact.FirstName"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" asp-for="contact.LastName"></label>
+                        <input class="form-control" asp-for="contact.LastName" />
+                        <span class="text-danger" asp-validation-for="contact.LastName"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" asp-for="contact.DateOfBirth"></label>
+                        @if (Model.contact.DateOfBirth == DateTime.MinValue)
+                        {
+                            <input class="form-control" name="contact.DateOfBirth" type="date" value="" />
+                        }
+                        else
+                        {
+                            <input class="form-control" name="contact.DateOfBirth" type="date" value="@Model.contact.DateOfBirth.ToString("yyyy-MM-dd")" />
+                        }
+                        <span class="text-danger" asp-validation-for="contact.DateOfBirth"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" asp-for="contact.Email"></label>
+                        <input class="form-control" asp-for="contact.Email" />
+                        <span class="text-danger" asp-validation-for="contact.Email"></span>
+                    </div>
+                </div>
+
+                <div class="action-row mt-4">
+                    <button class="btn btn-primary" type="submit">Gửi liên hệ</button>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="mb-3">
-        <label class="form-label" asp-for="contact.DateOfBirth"></label>
-        @if (Model.contact.DateOfBirth == DateTime.MinValue)
+    <div class="col-lg-5">
+        @if (!string.IsNullOrEmpty(Model.thongbao))
         {
-            <input class="form-control" name="contact.DateOfBirth" type="date" value="" />
+            <div class="alert alert-danger">@Model.thongbao</div>
         }
-        else
-        {
-            <input class="form-control" name="contact.DateOfBirth" type="date" value="@Model.contact.DateOfBirth.ToString("yyyy-MM-dd")" />
-        }
-        <span class="text-danger" asp-validation-for="contact.DateOfBirth"></span>
-    </div>
-    <div class="mb-3">
-        <label class="form-label" asp-for="contact.Email"></label>
-        <input class="form-control" asp-for="contact.Email" />
-        <span class="text-danger" asp-validation-for="contact.Email"></span>
-    </div>
-    <button class="btn btn-danger" type="submit">Gửi</button>
-</form>
 
-@if (!string.IsNullOrEmpty(Model.thongbao))
-{
-    <div class="alert alert-danger m-2">
-        <p>@Model.thongbao</p>
+        <div class="detail-panel h-100">
+            <span class="eyebrow">Xem trước dữ liệu</span>
+            <h2 class="section-title">Thông tin Contact</h2>
+            <dl class="detail-list mt-4">
+                <div>
+                    <dt>ContactId</dt>
+                    <dd>@Model.contact.ContactId</dd>
+                </div>
+                <div>
+                    <dt>FirstName</dt>
+                    <dd>@Model.contact.FirstName</dd>
+                </div>
+                <div>
+                    <dt>LastName</dt>
+                    <dd>@Model.contact.LastName</dd>
+                </div>
+                <div>
+                    <dt>DateOfBirth</dt>
+                    <dd>@(Model.contact.DateOfBirth == DateTime.MinValue ? "" : Model.contact.DateOfBirth.ToString("dd/MM/yyyy"))</dd>
+                </div>
+                <div>
+                    <dt>Email</dt>
+                    <dd>@Model.contact.Email</dd>
+                </div>
+            </dl>
+        </div>
     </div>
-}
-
-<div class="alert alert-secondary m-2">
-    <p>Thông tin Contact</p>
-    <ul>
-        <li>ContactId: @Model.contact.ContactId</li>
-        <li>FirstName: @Model.contact.FirstName</li>
-        <li>LastName: @Model.contact.LastName</li>
-        <li>DateOfBirth: @(Model.contact.DateOfBirth == DateTime.MinValue ? "" : Model.contact.DateOfBirth.ToString("dd/MM/yyyy"))</li>
-        <li>Email: @Model.contact.Email</li>
-    </ul>
 </div>

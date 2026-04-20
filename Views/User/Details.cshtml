@@ -4,21 +4,35 @@
     ViewData["Title"] = $"Chi tiết người dùng: {Model.Username}";
 }
 
-<h1>@ViewData["Title"]</h1>
-
-<div>
-    <h4>Người dùng</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">Tên đăng nhập</dt>
-        <dd class="col-sm-10">@Model.Username</dd>
-        <dt class="col-sm-2">Email</dt>
-        <dd class="col-sm-10">@Model.Email</dd>
-        <dt class="col-sm-2">Vai trò</dt>
-        <dd class="col-sm-10">@Model.Role</dd>
-    </dl>
+<div class="page-header">
+    <div>
+        <span class="eyebrow">Chi tiết người dùng</span>
+        <h1>@ViewData["Title"]</h1>
+        <p class="mb-0">Phần thông tin chính được trình bày súc tích và dễ quét mắt hơn.</p>
+    </div>
+    <div class="page-actions">
+        <span class="pill-badge">@Model.Role</span>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Sửa</a>
-    <a asp-action="Index" class="btn btn-secondary">Quay lại danh sách</a>
+
+<div class="detail-panel">
+    <dl class="detail-list">
+        <div>
+            <dt>Tên đăng nhập</dt>
+            <dd>@Model.Username</dd>
+        </div>
+        <div>
+            <dt>Email</dt>
+            <dd>@Model.Email</dd>
+        </div>
+        <div>
+            <dt>Vai trò</dt>
+            <dd>@Model.Role</dd>
+        </div>
+    </dl>
+
+    <div class="action-row mt-4">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Sửa</a>
+        <a asp-action="Index" class="btn btn-outline-secondary">Quay lại danh sách</a>
+    </div>
 </div>

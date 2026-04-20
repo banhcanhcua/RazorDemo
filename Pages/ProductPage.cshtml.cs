@@ -41,7 +41,7 @@ public class ProductPageModel : PageModel
 
     public string PageTitle { get; set; } = "Danh sách sản phẩm";
 
-    public void OnGet(int? id)
+    public async Task OnGetAsync(int? id)
     {
         int page = 1;
         if (Request.Query.ContainsKey("page"))
@@ -49,17 +49,18 @@ public class ProductPageModel : PageModel
             int.TryParse(Request.Query["page"], out page);
             if (page < 1) page = 1;
         }
-        var allProducts = _productService.SearchProducts(SearchKeyword, CategoryId);
+        string sortOrder = Request.Query.ContainsKey("SortOrder") ? Request.Query["SortOrder"].ToString() : "asc";
+        var allProducts = await _productService.SearchProductsAsync(SearchKeyword, CategoryId, sortOrder);
         int totalProducts = allProducts.Count;
         Products = allProducts.Skip((page - 1) * PageSize).Take(PageSize).ToList();
         CurrentPage = page;
         TotalPages = (int)Math.Ceiling((double)totalProducts / PageSize);
-        Categories = _productService.GetCategories();
+        Categories = await _productService.GetCategoriesAsync();
 
         if (id is not null)
         {
             ProductId = id.Value;
-            Product = _productService.GetProductById(id.Value);
+            Product = await _productService.GetProductByIdAsync(id.Value);
             PageTitle = Product is not null
                 ? $"Thông tin sản phẩm (ID={id.Value})"
                 : "Sản phẩm không tồn tại";
@@ -86,16 +87,16 @@ public class ProductPageModel : PageModel
         }
     }
 
-    public IActionResult OnGetLastProduct()
+    public async Task<IActionResult> OnGetLastProductAsync()
     {
-        Product = _productService.GetProducts().LastOrDefault();
+        var products = await _productService.GetProductsAsync();
+        Product = products.LastOrDefault();
         if (Product is null)
         {
             return NotFound();
         }
-
-        Products = _productService.GetProducts();
-        Categories = _productService.GetCategories();
+        Products = products;
+        Categories = await _productService.GetCategoriesAsync();
         PageTitle = "Sản phẩm cuối";
         ProductUpdate = new Product
         {
@@ -110,25 +111,25 @@ public class ProductPageModel : PageModel
         return Page();
     }
 
-    public IActionResult OnGetRemoveAll()
+    public async Task<IActionResult> OnGetRemoveAllAsync()
     {
-        _productService.DeleteAll();
+        await _productService.DeleteAllAsync();
         return RedirectToPage("ProductPage");
     }
 
-    public async Task<IActionResult> OnPostCreate([Bind(Prefix = "NewProduct")] Product newProduct)
+    public async Task<IActionResult> OnPostCreateAsync([Bind(Prefix = "NewProduct")] Product newProduct)
     {
         if (!TryValidateModel(newProduct, "NewProduct"))
         {
-            Products = _productService.SearchProducts(SearchKeyword, CategoryId);
-            Categories = _productService.GetCategories();
+            Products = await _productService.SearchProductsAsync(SearchKeyword, CategoryId);
+            Categories = await _productService.GetCategoriesAsync();
             NewProduct = newProduct;
             return Page();
         }
 
         newProduct.ImageUrls = await SaveUploadedImagesAsync();
 
-        _productService.AddProduct(newProduct);
+        await _productService.AddProductAsync(newProduct);
         TempData["SuccessMessage"] = "Thêm sản phẩm thành công.";
         return RedirectToPage("ProductPage");
     }
@@ -164,22 +165,22 @@ public class ProductPageModel : PageModel
         return imageUrls;
     }
 
-    public IActionResult OnPostDelete(int id)
+    public async Task<IActionResult> OnPostDeleteAsync(int id)
     {
-        _productService.DeleteProduct(id);
+        await _productService.DeleteProductAsync(id);
         return RedirectToPage("ProductPage");
     }
 
-    public async Task<IActionResult> OnPostUpdate([Bind(Prefix = "ProductUpdate")] Product productUpdate)
+    public async Task<IActionResult> OnPostUpdateAsync([Bind(Prefix = "ProductUpdate")] Product productUpdate)
     {
         ProductId = productUpdate.Id;
         ProductUpdate = productUpdate;
 
         if (!TryValidateModel(productUpdate, "ProductUpdate"))
         {
-            Products = _productService.SearchProducts(SearchKeyword, CategoryId);
-            Categories = _productService.GetCategories();
-            Product = _productService.GetProductById(ProductId);
+            Products = await _productService.SearchProductsAsync(SearchKeyword, CategoryId);
+            Categories = await _productService.GetCategoriesAsync();
+            Product = await _productService.GetProductByIdAsync(ProductId);
             return Page();
         }
 
@@ -187,7 +188,7 @@ public class ProductPageModel : PageModel
         var newImages = await SaveUploadedImagesAsync();
         if (newImages.Any())
         {
-            var currentProduct = _productService.GetProductById(productUpdate.Id);
+            var currentProduct = await _productService.GetProductByIdAsync(productUpdate.Id);
             if (currentProduct != null)
             {
                 var allImages = currentProduct.ImageUrls.Concat(newImages).ToList();
@@ -199,14 +200,7 @@ public class ProductPageModel : PageModel
             }
         }
 
-        if (!_productService.UpdateProduct(productUpdate))
-        {
-            ModelState.AddModelError(string.Empty, "Không thể cập nhật sản phẩm. Sản phẩm không tồn tại.");
-            Products = _productService.SearchProducts(SearchKeyword, CategoryId);
-            Categories = _productService.GetCategories();
-            Product = _productService.GetProductById(ProductId);
-            return Page();
-        }
+        await _productService.UpdateProductAsync(productUpdate);
 
         TempData["SuccessMessage"] = "Cập nhật sản phẩm thành công.";
         return RedirectToPage("ProductPage");

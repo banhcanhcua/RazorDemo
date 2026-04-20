@@ -1,15 +1,33 @@
 @using RazorDemo.Models
 @model Product
 
-<div class="card my-4" style="width: 20rem">
-    <h2 class="card-header text-info">@Model.Name</h2>
-    <div class="card-body">
-        <p class="card-text">@Model.Description</p>
-        <p class="card-text">@Model.Price</p>
-        <form asp-controller="Cart" asp-action="Add" method="post" style="display:inline">
+@{
+    var imageUrl = Model.ImageUrls != null && Model.ImageUrls.Any() ? Model.ImageUrls[0] : null;
+    var previewLetter = !string.IsNullOrWhiteSpace(Model.Name) ? Model.Name.Substring(0, 1).ToUpperInvariant() : "P";
+    var description = string.IsNullOrWhiteSpace(Model.Description) ? "Sản phẩm đang được cập nhật thêm mô tả chi tiết." : Model.Description;
+}
+
+<div class="card product-card">
+    @if (!string.IsNullOrWhiteSpace(imageUrl))
+    {
+        <img src="@imageUrl" alt="@Model.Name" class="product-card-media" />
+    }
+    else
+    {
+        <div class="product-card-preview">@previewLetter</div>
+    }
+    <div class="product-card-body">
+        <div class="product-meta">
+            <div>
+                <h3 class="product-title">@Model.Name</h3>
+                <p class="product-description">@description</p>
+            </div>
+            <span class="price-tag">@Model.Price.ToString("N0") đ</span>
+        </div>
+        <form asp-controller="Cart" asp-action="Add" method="post">
             <input type="hidden" name="productId" value="@Model.Id" />
             <input type="hidden" name="quantity" value="1" />
-            <button type="submit" class="btn btn-success btn-sm">Thêm vào giỏ</button>
+            <button type="submit" class="btn btn-success w-100">Thêm vào giỏ</button>
         </form>
     </div>
 </div>

@@ -22,9 +22,9 @@ namespace RazorDemo.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(int productId, int quantity = 1)
+        public async Task<IActionResult> Add(int productId, int quantity = 1)
         {
-            var product = _productService.GetProductById(productId);
+            var product = await _productService.GetProductByIdAsync(productId);
             if (product == null)
                 return NotFound();
             var item = new CartItem

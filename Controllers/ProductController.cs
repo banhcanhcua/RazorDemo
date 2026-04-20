@@ -19,16 +19,20 @@ public class ProductController : Controller
     private string? UserRole => HttpContext.Session.GetString("Role");
 
     // GET: Product
-    public IActionResult Index(string? searchKeyword, int? categoryId)
+    public async Task<IActionResult> Index(string? searchKeyword, int? categoryId)
     {
         if (!IsAuthenticated)
         {
             return RedirectToPage("/Login");
         }
+        if (UserRole != "admin")
+        {
+            return Forbid();
+        }
 
         ViewData["SearchKeyword"] = searchKeyword;
         ViewData["CategoryId"] = categoryId;
-        ViewData["Categories"] = _productService.GetCategories();
+        ViewData["Categories"] = await _productService.GetCategoriesAsync();
 
         int pageSize = 15;
         int page = 1;
@@ -37,7 +41,7 @@ public class ProductController : Controller
             int.TryParse(Request.Query["page"], out page);
             if (page < 1) page = 1;
         }
-        var products = _productService.SearchProducts(searchKeyword, categoryId);
+        var products = await _productService.SearchProductsAsync(searchKeyword, categoryId);
         int totalProducts = products.Count;
         var pagedProducts = products.Skip((page - 1) * pageSize).Take(pageSize).ToList();
         ViewData["CurrentPage"] = page;
@@ -46,7 +50,7 @@ public class ProductController : Controller
     }
 
     // GET: Product/Details/5
-    public IActionResult Details(int? id)
+    public async Task<IActionResult> Details(int? id)
     {
         if (!IsAuthenticated)
         {
@@ -58,7 +62,7 @@ public class ProductController : Controller
             return NotFound();
         }
 
-        var product = _productService.GetProductById(id.Value);
+        var product = await _productService.GetProductByIdAsync(id.Value);
         if (product == null)
         {
             return NotFound();
@@ -68,14 +72,14 @@ public class ProductController : Controller
     }
 
     // GET: Product/Create
-    public IActionResult Create()
+    public async Task<IActionResult> Create()
     {
         if (!IsAuthenticated || UserRole != "admin")
         {
             return RedirectToPage("/Login");
         }
 
-        ViewData["Categories"] = _productService.GetCategories();
+        ViewData["Categories"] = await _productService.GetCategoriesAsync();
         return View();
     }
 
@@ -92,16 +96,16 @@ public class ProductController : Controller
         if (ModelState.IsValid)
         {
             product.ImageUrls = await SaveUploadedImagesAsync(uploadedImages);
-            _productService.AddProduct(product);
+            await _productService.AddProductAsync(product);
             TempData["SuccessMessage"] = "Thêm sản phẩm thành công.";
             return RedirectToAction(nameof(Index));
         }
-        ViewData["Categories"] = _productService.GetCategories();
+        ViewData["Categories"] = await _productService.GetCategoriesAsync();
         return View(product);
     }
 
     // GET: Product/Edit/5
-    public IActionResult Edit(int? id)
+    public async Task<IActionResult> Edit(int? id)
     {
         if (!IsAuthenticated || UserRole != "admin")
         {
@@ -113,19 +117,19 @@ public class ProductController : Controller
             return NotFound();
         }
 
-        var product = _productService.GetProductById(id.Value);
+        var product = await _productService.GetProductByIdAsync(id.Value);
         if (product == null)
         {
             return NotFound();
         }
-        ViewData["Categories"] = _productService.GetCategories();
+        ViewData["Categories"] = await _productService.GetCategoriesAsync();
         return View(product);
     }
 
     // POST: Product/Edit/5
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Edit(int id, [Bind("Id,Name,Description,Price,Stock,CategoryId")] Product product)
+    public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,Stock,CategoryId")] Product product)
     {
         if (!IsAuthenticated || UserRole != "admin")
         {
@@ -139,19 +143,16 @@ public class ProductController : Controller
 
         if (ModelState.IsValid)
         {
-            if (!_productService.UpdateProduct(product))
-            {
-                return NotFound();
-            }
+            await _productService.UpdateProductAsync(product);
             TempData["SuccessMessage"] = "Cập nhật sản phẩm thành công.";
             return RedirectToAction(nameof(Index));
         }
-        ViewData["Categories"] = _productService.GetCategories();
+        ViewData["Categories"] = await _productService.GetCategoriesAsync();
         return View(product);
     }
 
     // GET: Product/Delete/5
-    public IActionResult Delete(int? id)
+    public async Task<IActionResult> Delete(int? id)
     {
         if (!IsAuthenticated || UserRole != "admin")
         {
@@ -163,7 +164,7 @@ public class ProductController : Controller
             return NotFound();
         }
 
-        var product = _productService.GetProductById(id.Value);
+        var product = await _productService.GetProductByIdAsync(id.Value);
         if (product == null)
         {
             return NotFound();
@@ -175,28 +176,28 @@ public class ProductController : Controller
     // POST: Product/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public IActionResult DeleteConfirmed(int id)
+    public async Task<IActionResult> DeleteConfirmed(int id)
     {
         if (!IsAuthenticated || UserRole != "admin")
         {
             return RedirectToPage("/Login");
         }
 
-        _productService.DeleteProduct(id);
+        await _productService.DeleteProductAsync(id);
         return RedirectToAction(nameof(Index));
     }
 
     // POST: Product/RemoveAll
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult RemoveAll()
+    public async Task<IActionResult> RemoveAll()
     {
         if (!IsAuthenticated || UserRole != "admin")
         {
             return RedirectToPage("/Login");
         }
 
-        _productService.DeleteAll();
+        await _productService.DeleteAllAsync();
         return RedirectToAction(nameof(Index));
     }
 

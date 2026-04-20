@@ -4,25 +4,35 @@
     ViewData["Title"] = "Xóa người dùng";
 }
 
-<h1>@ViewData["Title"]</h1>
+<div class="page-header">
+    <div>
+        <span class="eyebrow">Xác nhận xoá</span>
+        <h1>@ViewData["Title"]</h1>
+        <p class="mb-0">Xem lại tài khoản trước khi xóa để tránh thao tác nhầm.</p>
+    </div>
+</div>
 
-<h3>Bạn có chắc chắn muốn xóa người dùng này?</h3>
-<div>
-    <h4>Người dùng</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">Tên đăng nhập</dt>
-        <dd class="col-sm-10">@Model.Username</dd>
-        <dt class="col-sm-2">Email</dt>
-        <dd class="col-sm-10">@Model.Email</dd>
-        <dt class="col-sm-2">Vai trò</dt>
-        <dd class="col-sm-10">@Model.Role</dd>
+<div class="danger-panel">
+    <h2 class="section-title">Bạn có chắc chắn muốn xóa người dùng này?</h2>
+    <dl class="detail-list mt-4">
+        <div>
+            <dt>Tên đăng nhập</dt>
+            <dd>@Model.Username</dd>
+        </div>
+        <div>
+            <dt>Email</dt>
+            <dd>@Model.Email</dd>
+        </div>
+        <div>
+            <dt>Vai trò</dt>
+            <dd>@Model.Role</dd>
+        </div>
     </dl>
 
-    <form asp-action="Delete" method="post">
+    <form asp-action="Delete" method="post" class="action-row mt-4">
         @Html.AntiForgeryToken()
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Xóa" class="btn btn-danger" /> |
-        <a asp-action="Index">Quay lại danh sách</a>
+        <input type="submit" value="Xóa" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-outline-secondary">Quay lại danh sách</a>
     </form>
 </div>

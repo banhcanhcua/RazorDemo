@@ -32,7 +32,13 @@ public class LoginModel : PageModel
             return Page();
         }
 
+
+        // Cho phép đăng nhập bằng email hoặc username
         var user = await _userService.GetUserByEmailAsync(LoginEmail);
+        if (user == null)
+        {
+            user = await _userService.GetUserByUsernameAsync(LoginEmail);
+        }
         if (user == null || user.Password != LoginPassword) // In real app, hash password
         {
             ModelState.AddModelError(string.Empty, "Email hoặc mật khẩu không đúng.");

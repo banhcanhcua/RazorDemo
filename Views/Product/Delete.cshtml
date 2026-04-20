@@ -4,25 +4,35 @@
     ViewData["Title"] = "Xóa sản phẩm";
 }
 
-<h1>@ViewData["Title"]</h1>
+<div class="page-header">
+    <div>
+        <span class="eyebrow">Xác nhận xoá</span>
+        <h1>@ViewData["Title"]</h1>
+        <p class="mb-0">Kiểm tra lại thông tin trước khi thực hiện thao tác không thể hoàn tác này.</p>
+    </div>
+</div>
 
-<h3>Bạn có chắc muốn xóa sản phẩm này?</h3>
-<div>
-    <h4>Sản phẩm</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">Tên</dt>
-        <dd class="col-sm-10">@Model.Name</dd>
-        <dt class="col-sm-2">Giá</dt>
-        <dd class="col-sm-10">@Model.Price</dd>
-        <dt class="col-sm-2">Danh mục</dt>
-        <dd class="col-sm-10">@Model.Category?.Name</dd>
+<div class="danger-panel">
+    <h2 class="section-title">Bạn có chắc muốn xóa sản phẩm này?</h2>
+    <dl class="detail-list mt-4">
+        <div>
+            <dt>Tên</dt>
+            <dd>@Model.Name</dd>
+        </div>
+        <div>
+            <dt>Giá</dt>
+            <dd>@Model.Price.ToString("N0") đ</dd>
+        </div>
+        <div>
+            <dt>Danh mục</dt>
+            <dd>@Model.Category?.Name</dd>
+        </div>
     </dl>
 
-    <form asp-action="Delete" method="post">
+    <form asp-action="Delete" method="post" class="action-row mt-4">
         @Html.AntiForgeryToken()
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="Xóa" class="btn btn-danger" />
-        <a asp-action="Index" class="btn btn-secondary">Quay lại danh sách</a>
+        <a asp-action="Index" class="btn btn-outline-secondary">Quay lại danh sách</a>
     </form>
 </div>

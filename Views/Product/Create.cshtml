@@ -4,61 +4,68 @@
     ViewData["Title"] = "Thêm sản phẩm mới";
 }
 
-<h1>@ViewData["Title"]</h1>
-
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" enctype="multipart/form-data" method="post">
-            @Html.AntiForgeryToken()
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Stock" class="control-label"></label>
-                <input asp-for="Stock" class="form-control" />
-                <span asp-validation-for="Stock" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CategoryId" class="control-label"></label>
-                <select asp-for="CategoryId" class="form-control">
-                    <option value="">Chọn danh mục</option>
-                    @if (ViewData["Categories"] is IEnumerable<RazorDemo.Models.Category> categories)
-                    {
-                        foreach (var category in categories)
-                        {
-                            <option value="@category.Id">@category.Name</option>
-                        }
-                    }
-                </select>
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Hình ảnh</label>
-                <input type="file" name="uploadedImages" class="form-control" multiple />
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Tạo" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="page-header">
+    <div>
+        <span class="eyebrow">Quản lý sản phẩm</span>
+        <h1>@ViewData["Title"]</h1>
+        <p class="mb-0">Tạo mới sản phẩm với bố cục gọn gàng, dễ nhập thông tin và hình ảnh.</p>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Quay lại danh sách</a>
+<div class="row">
+    <div class="col-xl-8">
+        <div class="form-panel">
+        <form asp-action="Create" enctype="multipart/form-data" method="post">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="CategoryId" class="control-label"></label>
+                    <select asp-for="CategoryId" class="form-select">
+                        <option value="">Chọn danh mục</option>
+                        @if (ViewData["Categories"] is IEnumerable<RazorDemo.Models.Category> categories)
+                        {
+                            foreach (var category in categories)
+                            {
+                                <option value="@category.Id">@category.Name</option>
+                            }
+                        }
+                    </select>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label asp-for="Description" class="control-label"></label>
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Stock" class="control-label"></label>
+                    <input asp-for="Stock" class="form-control" />
+                    <span asp-validation-for="Stock" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label class="control-label">Hình ảnh</label>
+                    <input type="file" name="uploadedImages" class="form-control" multiple />
+                </div>
+            </div>
+
+            <div class="action-row mt-4">
+                <input type="submit" value="Tạo" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-outline-secondary">Quay lại danh sách</a>
+            </div>
+        </form>
+        </div>
+    </div>
 </div>
 
 @section Scripts {

@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets/images/products/367ab0d6-8688-4d74-a89e-b90aaf651dee.jpg"
     },
     {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/images/products/413383ff-c0c0-43bc-84e0-008928a4a766.jpg",
+      "PackagePath": "staticwebassets/images/products/413383ff-c0c0-43bc-84e0-008928a4a766.jpg"
+    },
+    {
       "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/images/products/6e3b4aac-2bb7-4c03-ba7c-2e3dba55292d.jpg",
       "PackagePath": "staticwebassets/images/products/6e3b4aac-2bb7-4c03-ba7c-2e3dba55292d.jpg"
     },
@@ -33,12 +37,20 @@
       "PackagePath": "staticwebassets/images/products/77eb775c-6c27-4270-9816-a2b7439b9222.jpg"
     },
     {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/images/products/949409aa-ec02-4ccb-8678-b05e5e8ed9c6.jpg",
+      "PackagePath": "staticwebassets/images/products/949409aa-ec02-4ccb-8678-b05e5e8ed9c6.jpg"
+    },
+    {
       "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/images/products/ace31802-537d-40d5-b0b8-b3507b9ba9ac.jpg",
       "PackagePath": "staticwebassets/images/products/ace31802-537d-40d5-b0b8-b3507b9ba9ac.jpg"
     },
     {
       "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/images/products/d1586ed7-87b2-4c06-8d3e-49accd580788.jpg",
       "PackagePath": "staticwebassets/images/products/d1586ed7-87b2-4c06-8d3e-49accd580788.jpg"
+    },
+    {
+      "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/js/cart-popup.js",
+      "PackagePath": "staticwebassets/js/cart-popup.js"
     },
     {
       "Id": "/home/nlv-bbcc/aspnet-labs/RazorDemo/wwwroot/js/site.js",

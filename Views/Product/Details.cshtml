@@ -4,37 +4,60 @@
     ViewData["Title"] = $"Chi tiết sản phẩm: {Model.Name}";
 }
 
-<h1>@ViewData["Title"]</h1>
+<div class="page-header">
+    <div>
+        <span class="eyebrow">Chi tiết sản phẩm</span>
+        <h1>@ViewData["Title"]</h1>
+        <p class="mb-0">Thông tin chính được gom thành từng nhóm để xem nhanh hơn.</p>
+    </div>
+    <div class="page-actions">
+        <span class="price-tag">@Model.Price.ToString("N0") đ</span>
+    </div>
+</div>
 
-<div>
-    <h4>Sản phẩm</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">Tên</dt>
-        <dd class="col-sm-10">@Model.Name</dd>
-        <dt class="col-sm-2">Mô tả</dt>
-        <dd class="col-sm-10">@Model.Description</dd>
-        <dt class="col-sm-2">Giá</dt>
-        <dd class="col-sm-10">@Model.Price</dd>
-        <dt class="col-sm-2">Danh mục</dt>
-        <dd class="col-sm-10">@Model.Category?.Name</dd>
-        <dt class="col-sm-2">Tồn kho</dt>
-        <dd class="col-sm-10">@Model.Stock</dd>
+<div class="detail-panel">
+    <dl class="detail-list">
+        <div>
+            <dt>Tên</dt>
+            <dd>@Model.Name</dd>
+        </div>
+        <div>
+            <dt>Mô tả</dt>
+            <dd>@Model.Description</dd>
+        </div>
+        <div>
+            <dt>Danh mục</dt>
+            <dd>@Model.Category?.Name</dd>
+        </div>
+        <div>
+            <dt>Tồn kho</dt>
+            <dd>@Model.Stock</dd>
+        </div>
     </dl>
+
     @if (Model.ImageUrls.Any())
     {
-        <div class="mb-3">
-            <h5>Hình ảnh sản phẩm</h5>
-            <div class="d-flex flex-wrap gap-2">
+        <div class="mt-4">
+            <h2 class="section-title">Hình ảnh sản phẩm</h2>
+            <div class="image-gallery mt-3">
                 @foreach (var imageUrl in Model.ImageUrls)
                 {
-                    <img src="@imageUrl" class="img-thumbnail" style="max-height: 180px;" alt="@Model.Name" />
+                    <img src="@imageUrl" alt="@Model.Name" />
                 }
             </div>
         </div>
     }
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Sửa</a>
-    <a asp-action="Index" class="btn btn-secondary">Quay lại danh sách</a>
+
+    <div class="action-row mt-4">
+        <form asp-controller="Cart" asp-action="Add" method="post" class="m-0">
+            <input type="hidden" name="productId" value="@Model.Id" />
+            <input type="hidden" name="quantity" value="1" />
+            <button type="submit" class="btn btn-success">Thêm vào giỏ</button>
+        </form>
+        @if (Context.Session.GetString("Role") == "admin")
+        {
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Sửa</a>
+        }
+        <a asp-action="Index" class="btn btn-outline-secondary">Quay lại danh sách</a>
+    </div>
 </div>

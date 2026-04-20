@@ -1,23 +1,30 @@
-@page
+﻿@page
 @model RazorDemo.Pages.LoginModel
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Đăng nhập";
 }
 
-<h1>Login</h1>
-<form method="post" class="w-50">
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <div class="mb-3">
-        <label class="form-label">Email</label>
-        <input asp-for="LoginEmail" class="form-control" />
+<div class="auth-shell">
+    <div class="auth-card">
+        <span class="eyebrow">Chào mừng trở lại</span>
+        <h1>Đăng nhập</h1>
+        <p class="mb-4">Đăng nhập để quản lý sản phẩm, người dùng và tiếp tục mua sắm thuận tiện hơn.</p>
+
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger mb-3"></div>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input asp-for="LoginEmail" class="form-control" />
+            </div>
+            <div class="mb-4">
+                <label class="form-label">Password</label>
+                <input asp-for="LoginPassword" class="form-control" type="password" />
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
+        </form>
     </div>
-    <div class="mb-3">
-        <label class="form-label">Password</label>
-        <input asp-for="LoginPassword" class="form-control" type="password" />
-    </div>
-    <button type="submit" class="btn btn-primary">Đăng nhập</button>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
-</form>
