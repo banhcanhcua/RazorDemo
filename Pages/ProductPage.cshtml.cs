@@ -9,10 +9,12 @@ namespace RazorDemo.Pages;
 public class ProductPageModel : PageModel
 {
     private readonly ProductService _productService;
+    private readonly ProductImageStorageService _productImageStorageService;
 
-    public ProductPageModel(ProductService productService)
+    public ProductPageModel(ProductService productService, ProductImageStorageService productImageStorageService)
     {
         _productService = productService;
+        _productImageStorageService = productImageStorageService;
     }
 
     [BindProperty(SupportsGet = true)]
@@ -127,42 +129,22 @@ public class ProductPageModel : PageModel
             return Page();
         }
 
-        newProduct.ImageUrls = await SaveUploadedImagesAsync();
+        try
+        {
+            newProduct.ImageUrls = await _productImageStorageService.SaveUploadedImagesAsync(UploadedImages, HttpContext.RequestAborted);
+        }
+        catch (InvalidOperationException ex)
+        {
+            ModelState.AddModelError(nameof(UploadedImages), ex.Message);
+            Products = await _productService.SearchProductsAsync(SearchKeyword, CategoryId);
+            Categories = await _productService.GetCategoriesAsync();
+            NewProduct = newProduct;
+            return Page();
+        }
 
         await _productService.AddProductAsync(newProduct);
         TempData["SuccessMessage"] = "Thêm sản phẩm thành công.";
         return RedirectToPage("ProductPage");
-    }
-
-    private async Task<List<string>> SaveUploadedImagesAsync()
-    {
-        var imageUrls = new List<string>();
-        if (UploadedImages is null || UploadedImages.Count == 0)
-        {
-            return imageUrls;
-        }
-
-        var uploadDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "products");
-        Directory.CreateDirectory(uploadDirectory);
-
-        foreach (var file in UploadedImages)
-        {
-            if (file is null || file.Length == 0)
-            {
-                continue;
-            }
-
-            var extension = Path.GetExtension(file.FileName);
-            var fileName = $"{Guid.NewGuid()}{extension}";
-            var filePath = Path.Combine(uploadDirectory, fileName);
-
-            await using var stream = System.IO.File.Create(filePath);
-            await file.CopyToAsync(stream);
-
-            imageUrls.Add($"/images/products/{fileName}");
-        }
-
-        return imageUrls;
     }
 
     public async Task<IActionResult> OnPostDeleteAsync(int id)
@@ -185,7 +167,20 @@ public class ProductPageModel : PageModel
         }
 
         // Nếu có upload ảnh mới thì lưu và cập nhật danh sách ảnh
-        var newImages = await SaveUploadedImagesAsync();
+        List<string> newImages;
+        try
+        {
+            newImages = await _productImageStorageService.SaveUploadedImagesAsync(UploadedImages, HttpContext.RequestAborted);
+        }
+        catch (InvalidOperationException ex)
+        {
+            ModelState.AddModelError(nameof(UploadedImages), ex.Message);
+            Products = await _productService.SearchProductsAsync(SearchKeyword, CategoryId);
+            Categories = await _productService.GetCategoriesAsync();
+            Product = await _productService.GetProductByIdAsync(ProductId);
+            return Page();
+        }
+
         if (newImages.Any())
         {
             var currentProduct = await _productService.GetProductByIdAsync(productUpdate.Id);

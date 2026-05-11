@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "MWPM6KNxGjlZeNv+KKM8l4oaNuFcu0LEfVIych7/a7GLndvRr2JZLXtLXFcvUWRVb7Yga83jWaz147F6K7UoGg==",
+  "dgSpecHash": "X7N7H8IYKXYx8RCOBaWFmR4tB7NCDUKVVW5+yGUltF1M+ShCKr4T+l36ivIOQ6DnSWt6R+4kZRbuiOC1grZomA==",
   "success": true,
   "projectFilePath": "/home/nlv-bbcc/aspnet-labs/RazorDemo/RazorDemo.csproj",
   "expectedPackageFiles": [
@@ -31,6 +31,7 @@
     "/home/nlv-bbcc/.nuget/packages/microsoft.extensions.options/8.0.0/microsoft.extensions.options.8.0.0.nupkg.sha512",
     "/home/nlv-bbcc/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512",
     "/home/nlv-bbcc/.nuget/packages/mono.texttemplating/2.2.1/mono.texttemplating.2.2.1.nupkg.sha512",
+    "/home/nlv-bbcc/.nuget/packages/sixlabors.imagesharp/3.1.11/sixlabors.imagesharp.3.1.11.nupkg.sha512",
     "/home/nlv-bbcc/.nuget/packages/sqlitepclraw.bundle_e_sqlite3/2.1.6/sqlitepclraw.bundle_e_sqlite3.2.1.6.nupkg.sha512",
     "/home/nlv-bbcc/.nuget/packages/sqlitepclraw.core/2.1.6/sqlitepclraw.core.2.1.6.nupkg.sha512",
     "/home/nlv-bbcc/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.6/sqlitepclraw.lib.e_sqlite3.2.1.6.nupkg.sha512",

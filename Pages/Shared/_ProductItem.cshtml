@@ -18,11 +18,11 @@
     }
     <div class="product-card-body">
         <div class="product-meta">
-            <div>
+            <div class="product-copy">
                 <h3 class="product-title">@Model.Name</h3>
                 <p class="product-description">@description</p>
+                <span class="price-tag">@Model.Price.ToString("N0") đ</span>
             </div>
-            <span class="price-tag">@Model.Price.ToString("N0") đ</span>
         </div>
         <form asp-controller="Cart" asp-action="Add" method="post">
             <input type="hidden" name="productId" value="@Model.Id" />

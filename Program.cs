@@ -12,6 +12,7 @@ builder.Services.AddSession(); // Add session support
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection") ?? "Data Source=qlbh.db"));
 builder.Services.AddScoped<ProductService>();
+builder.Services.AddScoped<ProductImageStorageService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<CartService>();
 builder.Services.AddHttpContextAccessor();

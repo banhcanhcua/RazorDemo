@@ -1,4 +1,29 @@
-﻿// Xóa ảnh sản phẩm bằng AJAX trên trang chi tiết sản phẩm
+﻿function showStatusPopup(message, status = 'success') {
+	const popup = document.createElement('div');
+	popup.className = `status-popup ${status === 'error' ? 'status-popup-error' : 'status-popup-success'}`;
+	popup.innerHTML = `<span>${message}</span>`;
+	document.body.appendChild(popup);
+	setTimeout(() => {
+		popup.classList.add('show');
+	}, 10);
+	setTimeout(() => {
+		popup.classList.remove('show');
+		setTimeout(() => document.body.removeChild(popup), 400);
+	}, 2200);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+	const pageStatusPopup = document.getElementById('pageStatusPopup');
+	if (!pageStatusPopup) return;
+
+	const message = pageStatusPopup.dataset.message;
+	const status = pageStatusPopup.dataset.status || 'success';
+	if (message) {
+		showStatusPopup(message, status);
+	}
+});
+
+// Xóa ảnh sản phẩm bằng AJAX trên trang chi tiết sản phẩm
 document.addEventListener('DOMContentLoaded', function () {
 	const imagesPanel = document.getElementById('productImagesPanel');
 	const deleteAllBtn = document.getElementById('deleteAllImagesBtn');
@@ -48,26 +73,59 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // AJAX update for product list (sort/search)
 document.addEventListener('DOMContentLoaded', function () {
+	const filterForm = document.getElementById('productFilterForm');
+	const clearFiltersButton = document.getElementById('clearFiltersButton');
 	const sortOrder = document.getElementById('sortOrder');
 	const searchKeyword = document.getElementById('searchKeyword');
 	const productPanel = document.querySelector('.content-panel');
-	if (!sortOrder || !searchKeyword || !productPanel) return;
+	if (!filterForm || !clearFiltersButton || !sortOrder || !searchKeyword || !productPanel) return;
 
-	function updateProductList(page = 1) {
-		const sort = sortOrder.value;
-		const keyword = searchKeyword.value;
-		fetch(`/ProductPartial/List?sortOrder=${sort}&page=${page}&pageSize=15&keyword=${encodeURIComponent(keyword)}`)
+	function buildQuery(page = 1) {
+		const params = new URLSearchParams({
+			sortOrder: sortOrder.value,
+			page: page.toString(),
+			pageSize: '15',
+			keyword: searchKeyword.value
+		});
+
+		return params.toString();
+	}
+
+	function scrollToProductList() {
+		const targetTop = productPanel.getBoundingClientRect().top + window.scrollY - 110;
+		window.scrollTo({
+			top: Math.max(targetTop, 0),
+			behavior: 'smooth'
+		});
+	}
+
+	function updateProductList(page = 1, options = {}) {
+		const { scrollToList = false } = options;
+		const query = buildQuery(page);
+		fetch(`/ProductPartial/List?${query}`)
 			.then(res => res.text())
 			.then(html => {
 				productPanel.innerHTML = html;
+				history.replaceState(null, '', query ? `/?${query}${scrollToList ? '#product-list' : ''}` : '/');
 				attachPaginationEvents();
+				if (scrollToList) {
+					scrollToProductList();
+				}
 			});
 	}
 
-	sortOrder.addEventListener('change', function (e) {
+	filterForm.addEventListener('submit', function (e) {
+		e.preventDefault();
 		updateProductList(1);
 	});
-	searchKeyword.addEventListener('input', function (e) {
+
+	clearFiltersButton.addEventListener('click', function () {
+		sortOrder.value = 'asc';
+		searchKeyword.value = '';
+		updateProductList(1);
+	});
+
+	sortOrder.addEventListener('change', function (e) {
 		updateProductList(1);
 	});
 
@@ -77,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				e.preventDefault();
 				const url = new URL(link.href);
 				const page = url.searchParams.get('page') || 1;
-				updateProductList(page);
+				updateProductList(page, { scrollToList: true });
 			});
 		});
 	}

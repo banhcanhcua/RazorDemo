@@ -18,9 +18,11 @@ public class ProductBox : ViewComponent
         var products = await _productService.SearchProductsAsync(keyword, null, sortOrder);
         var paged = products.Skip((page - 1) * pageSize).Take(pageSize).ToList();
         ViewData["SortOrder"] = sapxepTang ? "Tăng dần" : "Giảm dần";
+        ViewData["SortOrderValue"] = sortOrder;
         ViewData["CurrentPage"] = page;
         ViewData["PageSize"] = pageSize;
         ViewData["Keyword"] = keyword;
+        ViewData["HasNextPage"] = page * pageSize < products.Count;
         return View(paged);
     }
 }

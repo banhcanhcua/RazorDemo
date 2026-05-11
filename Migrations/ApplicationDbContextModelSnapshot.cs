@@ -49,6 +49,35 @@ namespace RazorDemo.Migrations
                         });
                 });
 
+            modelBuilder.Entity("RazorDemo.Models.Contact", b =>
+                {
+                    b.Property<int>("ContactId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ContactId");
+
+                    b.ToTable("Contacts");
+                });
+
             modelBuilder.Entity("RazorDemo.Models.Order", b =>
                 {
                     b.Property<int>("Id")

@@ -76,7 +76,10 @@ public class ProductService
     {
         var query = _context.Products.Include(p => p.Category).AsQueryable();
         if (!string.IsNullOrWhiteSpace(keyword))
-            query = query.Where(p => p.Name.Contains(keyword) || p.Id.ToString() == keyword);
+        {
+            var normalizedKeyword = keyword.Trim().ToLower();
+            query = query.Where(p => p.Name.ToLower().Contains(normalizedKeyword) || p.Id.ToString() == keyword.Trim());
+        }
         if (categoryId.HasValue)
             query = query.Where(p => p.CategoryId == categoryId.Value);
         query = sortOrder == "desc"

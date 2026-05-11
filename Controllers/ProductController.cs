@@ -9,10 +9,12 @@ namespace RazorDemo.Controllers;
 public class ProductController : Controller
 {
     private readonly ProductService _productService;
+    private readonly ProductImageStorageService _productImageStorageService;
 
-    public ProductController(ProductService productService)
+    public ProductController(ProductService productService, ProductImageStorageService productImageStorageService)
     {
         _productService = productService;
+        _productImageStorageService = productImageStorageService;
     }
 
     private bool IsAuthenticated => HttpContext.Session.GetString("UserId") != null;
@@ -95,7 +97,18 @@ public class ProductController : Controller
 
         if (ModelState.IsValid)
         {
-            product.ImageUrls = await SaveUploadedImagesAsync(uploadedImages);
+            try
+            {
+                product.ImageUrls = await _productImageStorageService.SaveUploadedImagesAsync(uploadedImages, HttpContext.RequestAborted);
+            }
+            catch (InvalidOperationException ex)
+            {
+                ModelState.AddModelError("uploadedImages", ex.Message);
+            }
+        }
+
+        if (ModelState.IsValid)
+        {
             await _productService.AddProductAsync(product);
             TempData["SuccessMessage"] = "Thêm sản phẩm thành công.";
             return RedirectToAction(nameof(Index));
@@ -199,36 +212,5 @@ public class ProductController : Controller
 
         await _productService.DeleteAllAsync();
         return RedirectToAction(nameof(Index));
-    }
-
-    private async Task<List<string>> SaveUploadedImagesAsync(List<IFormFile> uploadedImages)
-    {
-        var imageUrls = new List<string>();
-        if (uploadedImages == null || uploadedImages.Count == 0)
-        {
-            return imageUrls;
-        }
-
-        var uploadDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "products");
-        Directory.CreateDirectory(uploadDirectory);
-
-        foreach (var file in uploadedImages)
-        {
-            if (file == null || file.Length == 0)
-            {
-                continue;
-            }
-
-            var extension = Path.GetExtension(file.FileName);
-            var fileName = $"{Guid.NewGuid()}{extension}";
-            var filePath = Path.Combine(uploadDirectory, fileName);
-
-            await using var stream = System.IO.File.Create(filePath);
-            await file.CopyToAsync(stream);
-
-            imageUrls.Add($"/images/products/{fileName}");
-        }
-
-        return imageUrls;
     }
 }

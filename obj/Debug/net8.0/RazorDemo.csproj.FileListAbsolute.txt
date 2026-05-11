@@ -156,3 +156,4 @@
 /home/nlv-bbcc/aspnet-labs/RazorDemo/obj/Debug/net8.0/RazorDemo.csproj.CopyComplete
 /home/nlv-bbcc/aspnet-labs/RazorDemo/obj/Debug/net8.0/scopedcss/Views/Shared/_Layout.cshtml.rz.scp.css
 /home/nlv-bbcc/aspnet-labs/RazorDemo/obj/Debug/net8.0/RazorDemo.sourcelink.json
+/home/nlv-bbcc/aspnet-labs/RazorDemo/bin/Debug/net8.0/SixLabors.ImageSharp.dll

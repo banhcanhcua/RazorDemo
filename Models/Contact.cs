@@ -20,9 +20,11 @@ public class CustomBirthDateAttribute : ValidationAttribute
 
 public class Contact
 {
+    [Key]
     [DisplayName("Id của bạn")]
-    [Range(1, 100, ErrorMessage = "Nhập sai")]
     public int ContactId { get; set; }
+
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
 
     [Required(ErrorMessage = "Tên là bắt buộc")]
     public string FirstName { get; set; } = string.Empty;

@@ -1,5 +1,6 @@
 @page "/ContactPage"
 @model RazorDemo.Pages.ContactPageModel
+@using Microsoft.AspNetCore.Http
 
 @{
     ViewData["Title"] = "LIÊN HỆ";
@@ -13,11 +14,22 @@
     </div>
 </div>
 
+@if (!string.IsNullOrEmpty(Model.thongbao))
+{
+    <div id="pageStatusPopup" data-message="@Model.thongbao" data-status="@(Model.IsSuccess ? "success" : "error")" hidden></div>
+}
+
 <div class="row g-4">
     <div class="col-lg-7">
         <div class="form-panel h-100">
             <form method="post">
                 <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+                @if (Model.IsAdmin && Model.ShowContacts)
+                {
+                    <input type="hidden" asp-for="ShowContacts" />
+                    <input type="hidden" asp-for="ContactPage" />
+                }
 
                 <div class="row g-3">
                     <div class="col-md-6">
@@ -53,22 +65,26 @@
                     <button class="btn btn-primary" type="submit">Gửi liên hệ</button>
                 </div>
             </form>
+
+            @if (Model.IsAdmin)
+            {
+                <div class="action-row mt-3">
+                    <form method="get">
+                        <input type="hidden" name="ShowContacts" value="@(Model.ShowContacts ? "false" : "true")" />
+                        <input type="hidden" name="ContactPage" value="1" />
+                        <button class="btn btn-outline-primary" type="submit">
+                            @(Model.ShowContacts ? "Ẩn danh sách liên hệ" : "Xem toàn bộ liên hệ đã gửi")
+                        </button>
+                    </form>
+                </div>
+            }
         </div>
     </div>
     <div class="col-lg-5">
-        @if (!string.IsNullOrEmpty(Model.thongbao))
-        {
-            <div class="alert alert-danger">@Model.thongbao</div>
-        }
-
         <div class="detail-panel h-100">
             <span class="eyebrow">Xem trước dữ liệu</span>
             <h2 class="section-title">Thông tin Contact</h2>
             <dl class="detail-list mt-4">
-                <div>
-                    <dt>ContactId</dt>
-                    <dd>@Model.contact.ContactId</dd>
-                </div>
                 <div>
                     <dt>FirstName</dt>
                     <dd>@Model.contact.FirstName</dd>
@@ -89,3 +105,65 @@
         </div>
     </div>
 </div>
+
+@if (Model.IsAdmin && Model.ShowContacts)
+{
+    <div class="list-panel mt-4">
+        <div class="page-header mb-3">
+            <div>
+                <span class="eyebrow">Quản trị viên</span>
+                <h2 class="section-title">Danh sách liên hệ đã gửi</h2>
+                <p class="section-subtitle mb-0">Toàn bộ thông tin liên hệ người dùng đã gửi được sắp xếp mới nhất trước.</p>
+            </div>
+        </div>
+
+        @if (Model.SubmittedContacts.Count == 0)
+        {
+            <p class="mb-0">Chưa có thông tin liên hệ nào được gửi.</p>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">Họ</th>
+                            <th scope="col">Tên</th>
+                            <th scope="col">Ngày sinh</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Thời gian gửi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.SubmittedContacts)
+                        {
+                            <tr>
+                                <td>@item.LastName</td>
+                                <td>@item.FirstName</td>
+                                <td>@item.DateOfBirth.ToString("dd/MM/yyyy")</td>
+                                <td>@item.Email</td>
+                                <td>@item.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-3">
+                <nav aria-label="Phân trang liên hệ">
+                    <ul class="pagination justify-content-center mb-0">
+                        <li class="page-item @(Model.ContactPage == 1 ? "disabled" : "")">
+                            <a class="page-link" href="?ShowContacts=true&ContactPage=@(Model.ContactPage - 1)">Previous</a>
+                        </li>
+                        <li class="page-item">
+                            <span class="page-link">Trang @Model.ContactPage / @Model.TotalContactPages</span>
+                        </li>
+                        <li class="page-item @(Model.ContactPage >= Model.TotalContactPages ? "disabled" : "")">
+                            <a class="page-link" href="?ShowContacts=true&ContactPage=@(Model.ContactPage + 1)">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        }
+    </div>
+}

@@ -37,7 +37,7 @@
                         @if (Model != null && Model.isAuthenticated != null && Convert.ToBoolean(Model.isAuthenticated))
                         {
                             <a class="btn btn-outline-primary btn-sm" asp-controller="Cart" asp-action="Index">Giỏ hàng</a>
-                            <span class="user-chip">@(Model.username != null ? Model.username : "") <small>@(Model.role != null ? Model.role : "")</small></span>
+                            <span class="user-chip">@(Model.username != null ? Model.username : "")</span>
                             <form asp-page="/Login" asp-page-handler="Logout" method="post" class="m-0">
                                 <button type="submit" class="btn btn-outline-secondary btn-sm">Đăng xuất</button>
                             </form>
