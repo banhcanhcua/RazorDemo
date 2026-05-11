@@ -1,7 +1,16 @@
-﻿@{
+﻿@using RazorDemo.Models
+@{
+    var currentPage = ViewContext?.RouteData.Values["page"]?.ToString();
+    var isLoginPage = string.Equals(currentPage, "/Login", StringComparison.OrdinalIgnoreCase);
     var isAuthenticated = Context.Session.GetString("UserId") != null;
     var username = Context.Session.GetString("Username");
     var role = Context.Session.GetString("Role");
+    var headerModel = new HeaderMainWrapperViewModel
+    {
+        IsAuthenticated = isAuthenticated,
+        Username = username,
+        Role = role
+    };
 }
 <!DOCTYPE html>
 <html lang="vi">
@@ -13,11 +22,12 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/RazorDemo.styles.css" asp-append-version="true" />
 </head>
-<body>
+<body class="@(isLoginPage ? "login-page-body" : string.Empty)">
     <div class="app-shell">
-
-
-        @await Html.PartialAsync("_HeaderMainWrapper", new { isAuthenticated = isAuthenticated, username = username, role = role })
+        @if (!isLoginPage)
+        {
+            @await Html.PartialAsync("_HeaderMainWrapper", headerModel)
+        }
 
         <main role="main" class="site-main">
             <div class="container">
@@ -25,17 +35,20 @@
             </div>
         </main>
 
-        <footer class="site-footer">
-            <div class="container">
-                <div class="footer-shell">
-                    <div>
-                        <strong>RazorDemo</strong>
-                        <span class="text-muted ms-2">Giao diện mua sắm gọn gàng, hiện đại và dễ dùng.</span>
+        @if (!isLoginPage)
+        {
+            <footer class="site-footer">
+                <div class="container">
+                    <div class="footer-shell">
+                        <div>
+                            <strong>RazorDemo</strong>
+                            <span class="text-muted ms-2">Giao diện mua sắm gọn gàng, hiện đại và dễ dùng.</span>
+                        </div>
+                        <a asp-area="" asp-page="/Privacy">Privacy</a>
                     </div>
-                    <a asp-area="" asp-page="/Privacy">Privacy</a>
                 </div>
-            </div>
-        </footer>
+            </footer>
+        }
     </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

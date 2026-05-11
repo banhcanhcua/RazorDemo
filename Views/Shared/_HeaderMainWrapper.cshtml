@@ -1,25 +1,33 @@
 @* Component: Header + Main Wrapper *@
-@model dynamic
-<header class="site-header">
+@model RazorDemo.Models.HeaderMainWrapperViewModel
+@{
+    var isLoginPage = string.Equals(ViewContext?.RouteData.Values["page"]?.ToString(), "/Login", StringComparison.OrdinalIgnoreCase);
+}
+<header class="site-header @(isLoginPage ? "login-page-header" : string.Empty)">
     <div class="container">
-        <nav class="navbar navbar-expand-lg site-navbar">
+        <nav class="navbar navbar-expand-lg site-navbar @(isLoginPage ? "login-page-navbar" : string.Empty)">
             <div class="container-fluid px-0">
                 <a class="navbar-brand brand-mark" asp-area="" asp-page="/Index">
                     <span class="brand-badge">RD</span>
                     <span>RazorDemo</span>
                 </a>
+                @if (!isLoginPage)
+                {
                 <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation" aria-controls="mainNavigation"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                }
+                @if (!isLoginPage)
+                {
                 <div class="collapse navbar-collapse mt-3 mt-lg-0" id="mainNavigation">
                     <ul class="navbar-nav main-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-page="/Index">Trang chủ</a>
                         </li>
-                        @if (Model != null && Model.isAuthenticated != null && Convert.ToBoolean(Model.isAuthenticated))
+                        @if (Model.IsAuthenticated)
                         {
-                            if (Model.role != null && Convert.ToString(Model.role) == "admin")
+                            if (Model.Role == "admin")
                             {
                                 <li class="nav-item">
                                     <a class="nav-link" asp-controller="Product" asp-action="Index">Sản phẩm</a>
@@ -34,10 +42,10 @@
                         </li>
                     </ul>
                     <div class="nav-utilities">
-                        @if (Model != null && Model.isAuthenticated != null && Convert.ToBoolean(Model.isAuthenticated))
+                        @if (Model.IsAuthenticated)
                         {
                             <a class="btn btn-outline-primary btn-sm" asp-controller="Cart" asp-action="Index">Giỏ hàng</a>
-                            <span class="user-chip">@(Model.username != null ? Model.username : "")</span>
+                            <span class="user-chip">@(Model.Username ?? "")</span>
                             <form asp-page="/Login" asp-page-handler="Logout" method="post" class="m-0">
                                 <button type="submit" class="btn btn-outline-secondary btn-sm">Đăng xuất</button>
                             </form>
@@ -48,6 +56,7 @@
                         }
                     </div>
                 </div>
+                }
             </div>
         </nav>
     </div>

@@ -5,22 +5,29 @@
 }
 
 <div class="auth-shell">
+    <a class="auth-brand" asp-area="" asp-page="/Index">
+        <span class="brand-badge auth-brand-badge">RD</span>
+        <span class="auth-brand-name">RazorDemo</span>
+    </a>
+
     <div class="auth-card">
         <span class="eyebrow">Chào mừng trở lại</span>
         <h1>Đăng nhập</h1>
-        <p class="mb-4">Đăng nhập để quản lý sản phẩm, người dùng và tiếp tục mua sắm thuận tiện hơn.</p>
+        <p class="mb-4 auth-description">Đăng nhập để quản lý sản phẩm, người dùng và tiếp tục mua sắm thuận tiện hơn.</p>
 
         <form method="post">
-            <div asp-validation-summary="All" class="text-danger mb-3"></div>
-            <div class="mb-3">
-                <label class="form-label">Email</label>
-                <input asp-for="LoginEmail" class="form-control" />
+            <div asp-validation-summary="All" class="text-danger auth-validation"></div>
+            <div class="auth-field">
+                <label class="form-label auth-label">Email</label>
+                <input asp-for="LoginEmail" class="form-control auth-input" />
             </div>
-            <div class="mb-4">
-                <label class="form-label">Password</label>
-                <input asp-for="LoginPassword" class="form-control" type="password" />
+            <div class="auth-field">
+                <label class="form-label auth-label">Password</label>
+                <input asp-for="LoginPassword" class="form-control auth-input" type="password" />
             </div>
-            <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
+            <div class="auth-actions">
+                <button type="submit" class="btn btn-primary auth-submit-button">Đăng nhập</button>
+            </div>
         </form>
     </div>
 </div>
